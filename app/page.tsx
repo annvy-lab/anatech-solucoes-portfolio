@@ -41,6 +41,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
+import toast, { Toaster } from "react-hot-toast";
 
 const themeColors = [
   { name: "Blue", value: "blue", primary: "#3b82f6", secondary: "#1e40af" },
@@ -236,10 +237,28 @@ export default function PortfolioSite() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Handle form submission here
+
+    const endpoint = "https://formspree.io/f/mvgqwvqy";
+
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        toast.success("Mensagem enviada com sucesso!");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        toast.error("Erro ao enviar a mensagem.");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Ocorreu um erro. Tente novamente.");
+    }
   };
 
   return (
@@ -692,7 +711,7 @@ export default function PortfolioSite() {
                   </div>
                   <div>
                     <h4 className="font-semibold">Email</h4>
-                    <p className="text-muted-foreground">hello@portfolio.com</p>
+                    <p className="text-muted-foreground">annavitoriasm.cxm@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
@@ -701,7 +720,7 @@ export default function PortfolioSite() {
                   </div>
                   <div>
                     <h4 className="font-semibold">Telefone</h4>
-                    <p className="text-muted-foreground">+55 (55) 1234-1234</p>
+                    <p className="text-muted-foreground">+55 (99) 99142-4779</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
@@ -909,11 +928,11 @@ export default function PortfolioSite() {
               <div className="space-y-3 text-muted-foreground">
                 <p className="flex items-center space-x-2">
                   <Mail className="w-4 h-4" />
-                  <span>hello@portfolio.com</span>
+                  <span>annavitoriasm.cxm@gmail.com</span>
                 </p>
                 <p className="flex items-center space-x-2">
                   <Phone className="w-4 h-4" />
-                  <span>+55 (55) 1234-1234</span>
+                  <span>+55 (99) 99142-4779</span>
                 </p>
                 <p className="flex items-center space-x-2">
                   <MapPin className="w-4 h-4" />

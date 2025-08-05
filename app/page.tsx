@@ -409,7 +409,7 @@ export default function PortfolioSite() {
                 }}
               >
                 <Image
-                  src="/lilas.png"
+                  src="/placeholder.svg?height=300&width=400"
                   alt="Foto de apresentação"
                   width={256}
                   height={256}

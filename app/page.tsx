@@ -2,7 +2,7 @@
 
 import type React from "react";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   Mail,
@@ -11,12 +11,15 @@ import {
   Star,
   ExternalLink,
   Linkedin,
-  Twitter,
   Palette,
   Check,
   Instagram,
   Send,
   CircleHelp,
+  Menu,
+  Briefcase,
+  Rocket,
+  Users,
 } from "lucide-react";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -41,7 +44,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const themeColors = [
   { name: "Blue", value: "blue", primary: "#3b82f6", secondary: "#1e40af" },
@@ -285,6 +288,7 @@ export default function PortfolioSite() {
       {/* Header */}
       <header className="sticky top-0 z-50 w-full px-10 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
+          {/* Logo */}
           <div className="flex items-center space-x-2">
             <div className="theme-primary w-8 h-8 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">P</span>
@@ -292,6 +296,7 @@ export default function PortfolioSite() {
             <span className="font-bold text-xl">Portfolio</span>
           </div>
 
+          {/* Navegação Desktop */}
           <nav className="hidden md:flex items-center space-x-6">
             <Link
               href="#services"
@@ -319,7 +324,8 @@ export default function PortfolioSite() {
             </Link>
           </nav>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-1">
+            {/* Seletor de Tema */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm">
@@ -342,6 +348,41 @@ export default function PortfolioSite() {
                     {currentTheme.value === theme.value && <Check className="w-4 h-4 ml-auto" />}
                   </DropdownMenuItem>
                 ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Menu Hamburguer - Mobile */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild className="p-0">
+                <Button variant="ghost" size="icon" className="md:hidden p-0">
+                  <Menu className="w-5 h-5" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="min-w-[calc(100%+1rem)] w-fit mr-2">
+                <DropdownMenuItem asChild>
+                  <Link href="#services" className="flex items-center space-x-2 w-full">
+                    <Briefcase className="w-4 h-4 text-primary" />
+                    <span>Serviços</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="#portfolio" className="flex items-center space-x-2 w-full">
+                    <Rocket className="w-4 h-4 text-primary" />
+                    <span>Portfólio</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="#about" className="flex items-center space-x-2 w-full">
+                    <Users className="w-4 h-4 text-primary" />
+                    <span>Sobre Nós</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="#contact" className="flex items-center space-x-2 w-full">
+                    <Mail className="w-4 h-4 text-primary" />
+                    <span>Contato</span>
+                  </Link>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -632,19 +673,19 @@ export default function PortfolioSite() {
                 </div>
               </div>
               <div className="flex flex-wrap gap-3">
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="border-primary hover:text-primary">
                   <FontAwesomeIcon icon={faWhatsapp} size="lg" className="mr-1" />
                   WhatsApp
                 </Button>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="border-primary hover:text-primary">
                   <Instagram className="w-4 h-4 mr-2" />
                   Instagram
                 </Button>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="border-primary hover:text-primary">
                   <Mail className="w-4 h-4 mr-2" />
                   Email
                 </Button>
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" className="border-primary hover:text-primary">
                   <Linkedin className="w-4 h-4 mr-2" />
                   LinkedIn
                 </Button>
@@ -940,16 +981,16 @@ export default function PortfolioSite() {
                 </p>
               </div>
               <div className="flex space-x-4 mt-4">
-                <Button variant="outline" size="sm" className="hover:bg-primary hover:text-white">
-                  <FontAwesomeIcon icon={faWhatsapp} size="lg" />
+                <Button size="sm">
+                  <FontAwesomeIcon icon={faWhatsapp} size="lg" className="p-0" />
                 </Button>
-                <Button variant="outline" size="sm" className="hover:bg-primary hover:text-white">
+                <Button size="sm">
                   <Instagram className="w-4 h-4" />
                 </Button>
-                <Button variant="outline" size="sm" className="hover:bg-primary hover:text-white">
+                <Button size="sm">
                   <Mail className="w-4 h-4" />
                 </Button>
-                <Button variant="outline" size="sm" className="hover:bg-primary hover:text-white">
+                <Button size="sm">
                   <Linkedin className="w-4 h-4" />
                 </Button>
               </div>

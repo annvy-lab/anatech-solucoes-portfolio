@@ -28,7 +28,7 @@ html {
       <body>
         {children}
         <Toaster
-          position="top-right"
+          position="top-center"
           reverseOrder={false}
           toastOptions={{
             duration: 4000,

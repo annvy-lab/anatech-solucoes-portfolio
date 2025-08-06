@@ -286,7 +286,7 @@ export default function PortfolioSite() {
       `}</style>
 
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full px-10 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-50 w-full px-8 md:px-10 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
@@ -329,7 +329,7 @@ export default function PortfolioSite() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm">
-                  <Palette className="w-4 h-4 mr-2" />
+                  <Palette className="w-4 h-4 mr-1" />
                   Temas
                 </Button>
               </DropdownMenuTrigger>
@@ -358,7 +358,7 @@ export default function PortfolioSite() {
                   <Menu className="w-6 h-6" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="min-w-[calc(100%+2rem)] w-fit mr-2">
+              <DropdownMenuContent align="end" className="min-w-[calc(100%+2rem)] w-fit mr-3">
                 <DropdownMenuItem asChild>
                   <Link href="#services" className="flex items-center space-x-2 w-full">
                     <Briefcase className="w-4 h-4 text-primary" />

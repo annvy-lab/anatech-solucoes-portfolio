@@ -358,7 +358,7 @@ export default function PortfolioSite() {
                   <Menu className="w-6 h-6" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="min-w-[calc(100%+2rem)] w-fit mr-3">
+              <DropdownMenuContent align="end" className="min-w-[calc(100%+1rem)] w-fit mr-3.5">
                 <DropdownMenuItem asChild>
                   <Link href="#services" className="flex items-center space-x-2 w-full">
                     <Briefcase className="w-4 h-4 text-primary" />

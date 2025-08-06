@@ -324,7 +324,7 @@ export default function PortfolioSite() {
             </Link>
           </nav>
 
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center space-x-3">
             {/* Seletor de Tema */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -355,10 +355,10 @@ export default function PortfolioSite() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild className="p-0">
                 <Button variant="ghost" size="icon" className="md:hidden p-0">
-                  <Menu className="w-5 h-5" />
+                  <Menu className="w-6 h-6" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="min-w-[calc(100%+1rem)] w-fit mr-2">
+              <DropdownMenuContent align="end" className="min-w-[calc(100%+2rem)] w-fit mr-2">
                 <DropdownMenuItem asChild>
                   <Link href="#services" className="flex items-center space-x-2 w-full">
                     <Briefcase className="w-4 h-4 text-primary" />

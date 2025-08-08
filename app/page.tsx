@@ -45,6 +45,7 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import toast from "react-hot-toast";
+import BackToTopButton from "../components/BackToTopButton";
 
 const themeColors = [
   { name: "Blue", value: "blue", primary: "#3b82f6", secondary: "#1e40af" },
@@ -1001,6 +1002,7 @@ export default function PortfolioSite() {
             <p>&copy; {new Date().getFullYear()} Portfólio. Todos os direitos reservados.</p>
           </div>
         </div>
+        <BackToTopButton />
       </footer>
     </div>
   );

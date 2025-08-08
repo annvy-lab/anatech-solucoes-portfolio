@@ -38,11 +38,8 @@ export default function BackToTopButton() {
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
           className="fixed bottom-6 right-6 z-50"
         >
-          <Button
-            onClick={scrollToTop}
-            className="rounded-full text-xs shadow-lg"
-          >
-            <ArrowUp className="w-4 h-4 mr-1" /> Topo
+          <Button onClick={scrollToTop} className="rounded-full text-xs shadow-lg">
+            <ArrowUp className="w-4 h-4" /> Topo
           </Button>
         </motion.div>
       )}

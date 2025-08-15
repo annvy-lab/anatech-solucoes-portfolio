@@ -44,7 +44,7 @@ export function AnimatedTypingText({
   }, [displayText, isDeleting, text, waitTime, typingSpeed, deletingSpeed]);
 
   return (
-    <strong className={`text-foreground inline-flex mt-2 ${className}`}>
+    <strong className={`text-xl text-foreground inline-flex mt-2 ${className}`}>
       {displayText}
       <motion.span
         aria-hidden

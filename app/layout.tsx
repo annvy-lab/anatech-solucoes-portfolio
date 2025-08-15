@@ -5,8 +5,8 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
-  title: "PortVers",
-  description: "Seu portfólio aqui!",
+  title: "AnaTech Soluções",
+  description: "Sistemas de Gestão para Seu Negócio!",
 };
 
 export default function RootLayout({
@@ -28,10 +28,13 @@ html {
       <body>
         {children}
         <Toaster
-          position="top-center"
+          position="bottom-right"
           reverseOrder={false}
           toastOptions={{
             duration: 4000,
+            style: {
+              borderRadius: "9999px",
+            },
           }}
         />
       </body>

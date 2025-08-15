@@ -19,7 +19,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 import {
   Menu,
@@ -282,7 +282,7 @@ export default function PortfolioSite() {
             </motion.p>
           </div>
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4"
+            className="grid grid-cols-2 md:grid-cols-3 gap-4 items-stretch"
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -291,20 +291,29 @@ export default function PortfolioSite() {
             {portfolio.map((project) => {
               const Icon = project.icon;
               return (
-                <Card key={project.id} className="h-full flex flex-col justify-center items-center">
-                  <CardHeader className="w-full items-center text-center space-y-2">
-                    <div className="flex items-center self-center justify-center w-14 h-14 rounded-full bg-primary/10">
+                <Card
+                  key={project.id}
+                  className="h-full flex flex-col justify-between p-4 bg-primary/10"
+                >
+                  <CardHeader className="flex flex-col items-center text-center space-y-3 pb-2">
+                    <div className="flex items-center justify-center w-14 h-14 rounded-full bg-primary/20">
                       {Icon ? (
-                        <Icon className="w-7 h-7 text-primary" aria-hidden />
+                        <Icon className="w-7 h-7 text-primary-700" aria-hidden />
                       ) : (
-                        <CircleHelp className="w-7 h-7 text-primary" aria-hidden />
+                        <CircleHelp className="w-7 h-7 text-primary-700" aria-hidden />
                       )}
                     </div>
-                    <CardTitle className="text-lg font-semibold">{project.title}</CardTitle>
-                    <CardDescription className="text-sm text-muted-foreground line-clamp-3">
+                    <CardTitle className="text-lg font-semibold text-foreground">
+                      {project.title}
+                    </CardTitle>
+                  </CardHeader>
+
+                  {/* Descrição fixa no rodapé */}
+                  <CardContent className="mt-auto p-0">
+                    <CardDescription className="text-sm text-muted-foreground text-center line-clamp-3">
                       {project.description}
                     </CardDescription>
-                  </CardHeader>
+                  </CardContent>
                 </Card>
               );
             })}
@@ -403,7 +412,7 @@ export default function PortfolioSite() {
               viewport={{ once: false, amount: 0.05 }}
             >
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold">Informações de Contato</h3>
+                <h3 className="text-2xl font-bold mb-2">Informações de Contato</h3>
               </div>
 
               <div className="flex flex-col md:flex-row md:items-stretch md:justify-between gap-6 md:gap-8">

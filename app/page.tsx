@@ -41,8 +41,8 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import toast from "react-hot-toast";
-import BackToTopButton from "@/components/backToTopButton";
-import { AnimatedTypingText } from "@/components/AnimatedTypingText";
+import BackToTopButton from "@/components/back-to-top-button";
+import { AnimatedTypingText } from "@/components/typing-text";
 
 import services from "@/constains/services";
 import portfolio from "@/constains/portfolio";

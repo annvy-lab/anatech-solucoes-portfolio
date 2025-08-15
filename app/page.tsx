@@ -1,33 +1,12 @@
 "use client";
 
-import type { ChangeEvent, FormEvent } from "react";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  Mail,
-  Phone,
-  MapPin,
-  ExternalLink,
-  Instagram,
-  Send,
-  CircleHelp,
-  Menu,
-  Store,
-  Rocket,
-  Users,
-} from "lucide-react";
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { toast } from "react-hot-toast";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -36,53 +15,51 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {
   Accordion,
+  AccordionContent,
   AccordionItem,
   AccordionTrigger,
-  AccordionContent,
 } from "@/components/ui/accordion";
-import toast from "react-hot-toast";
-import BackToTopButton from "@/components/back-to-top-button";
-import { AnimatedTypingText } from "@/components/typing-text";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-import services from "@/constains/services";
-import portfolio from "@/constains/portfolio";
+import {
+  Menu,
+  Store,
+  Rocket,
+  Users,
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  ArrowRight,
+  Copy,
+  Instagram,
+  CircleHelp,
+} from "lucide-react";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+
+import { AnimatedTypingText } from "@/components/typing-text";
 import ServiceItem from "@/components/service-item";
+import BackToTopButton from "@/components/back-to-top-button";
+
+import services from "@/data/services";
+import portfolio from "@/data/portfolio";
 
 export default function PortfolioSite() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-
+  const handleCopy = useCallback(async (text: string, successMsg: string) => {
     try {
-      const res = await fetch("https://formspree.io/f/mvgqwvqy", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      if (res.ok) {
-        toast.success("Mensagem enviada com sucesso!");
-        setFormData({ name: "", email: "", message: "" });
-      } else {
-        toast.error("Erro ao enviar a mensagem.");
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error("Ocorreu um erro. Tente novamente.");
+      await navigator.clipboard.writeText(text);
+      toast(successMsg);
+    } catch {
+      toast("Não foi possível copiar. Tente novamente.");
     }
-  };
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
       <header className="sticky top-0 z-50 w-full px-8 md:px-10 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
-          {/* Logo */}
           <div className="flex items-center space-x-2">
             <div className="w-7 h-7 relative flex items-center justify-center">
               <Image src="/logo.svg" alt="Logo" fill className="object-cover" />
@@ -90,7 +67,6 @@ export default function PortfolioSite() {
             <span className="font-semibold text-lg md:text-xl">Anatech Soluções</span>
           </div>
 
-          {/* Navegação Desktop */}
           <nav className="hidden md:flex items-center space-x-6">
             <Link
               href="#services"
@@ -118,7 +94,6 @@ export default function PortfolioSite() {
             </Link>
           </nav>
 
-          {/* Menu Mobile */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild className="p-0">
               <Button variant="ghost" size="icon" className="md:hidden p-0">
@@ -155,7 +130,6 @@ export default function PortfolioSite() {
         </div>
       </header>
 
-      {/* Hero */}
       <motion.section
         id="home"
         className="py-15 md:py-20 px-4 relative bg-center bg-no-repeat bg-cover"
@@ -223,7 +197,6 @@ export default function PortfolioSite() {
               </div>
             </motion.div>
 
-            {/* Ilustração flutuante */}
             <motion.div
               className="flex justify-center"
               initial={{ opacity: 0, x: 50 }}
@@ -248,7 +221,6 @@ export default function PortfolioSite() {
         </div>
       </motion.section>
 
-      {/* Services */}
       <section id="services" className="py-20 px-4 bg-muted/50">
         <div className="container mx-auto">
           <div className="text-center mb-16">
@@ -286,7 +258,6 @@ export default function PortfolioSite() {
         </div>
       </section>
 
-      {/* Portfolio */}
       <section id="portfolio" className="py-20 px-4">
         <div className="container mx-auto">
           <div className="text-center mb-16">
@@ -341,10 +312,9 @@ export default function PortfolioSite() {
         </div>
       </section>
 
-      {/* About */}
       <section id="about" className="py-20 px-4 bg-muted/50 overflow-x-hidden">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="flex flex-col md:px-50 lg:px-60 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -100 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -397,28 +367,10 @@ export default function PortfolioSite() {
                 </Button>
               </div>
             </motion.div>
-
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, x: 100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: false, amount: 0.05 }}
-              style={{ willChange: "transform" }}
-            >
-              <Image
-                src="/placeholder.svg?height=500&width=600"
-                alt="Sobre nós"
-                width={600}
-                height={500}
-                className="rounded-lg shadow-lg"
-              />
-            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Contact */}
       <section id="contact" className="py-20 px-4 overflow-x-hidden">
         <div className="container mx-auto">
           <div className="text-center mb-16">
@@ -443,110 +395,93 @@ export default function PortfolioSite() {
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 pt-0">
+          <div className="flex flex-col gap-12 pt-0">
             <motion.div
               initial={{ opacity: 0, x: -100 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: false, amount: 0.05 }}
             >
-              <h3 className="text-2xl font-bold mb-6">Informações de Contato</h3>
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="text-primary w-12 h-12 rounded-lg flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-white" />
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-bold">Informações de Contato</h3>
+              </div>
+
+              <div className="flex flex-col md:flex-row md:items-stretch md:justify-between gap-6 md:gap-8">
+                <div className="flex items-center justify-between gap-4 md:flex-1 rounded-lg">
+                  <div className="flex items-center gap-4">
+                    <div className="bg-primary w-12 h-12 rounded-lg flex items-center justify-center">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold">Email</h4>
+                      <p className="text-muted-foreground">anatechsolucoes2@gmail.com</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold">Email</h4>
-                    <p className="text-muted-foreground">anatechsolucoes2@gmail.com</p>
-                  </div>
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    className="shrink-0 hover:text-primary"
+                    aria-label="Copiar email"
+                    onClick={() =>
+                      handleCopy(
+                        "anatechsolucoes2@gmail.com",
+                        "Copiado para a área de transferência"
+                      )
+                    }
+                  >
+                    <Copy className="w-4 h-4" />
+                  </Button>
                 </div>
-                <div className="flex items-center space-x-4">
-                  <div className="text-primary w-12 h-12 rounded-lg flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-white" />
+
+                <div className="flex items-center justify-between gap-4 md:flex-1 rounded-lg">
+                  <div className="flex items-center gap-4">
+                    <div className="bg-primary w-12 h-12 rounded-lg flex items-center justify-center">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold">Telefone</h4>
+                      <p className="text-muted-foreground">+55 (99) 99201-3779</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold">Telefone</h4>
-                    <p className="text-muted-foreground">+55 (99) 99201-3779</p>
-                  </div>
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    className="shrink-0 hover:text-primary"
+                    aria-label="Copiar telefone"
+                    onClick={() =>
+                      handleCopy("+55 (99) 99201-3779", "Copiado para a área de transferência")
+                    }
+                  >
+                    <Copy className="w-4 h-4" />
+                  </Button>
                 </div>
-                <div className="flex items-center space-x-4">
-                  <div className="text-primary w-12 h-12 rounded-lg flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-white" />
+
+                <div className="flex items-center justify-between gap-4 md:flex-1 rounded-lg">
+                  <div className="flex items-center gap-4">
+                    <div className="bg-primary w-12 h-12 rounded-lg flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold">Local</h4>
+                      <p className="text-muted-foreground">Caxias, MA</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-semibold">Local</h4>
-                    <p className="text-muted-foreground">Caxias, MA</p>
-                  </div>
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    className="shrink-0 hover:text-primary"
+                    aria-label="Copiar local"
+                    onClick={() => handleCopy("Caxias, MA", "Copiado para a área de transferência")}
+                  >
+                    <Copy className="w-4 h-4" />
+                  </Button>
                 </div>
               </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              viewport={{ once: false, amount: 0.05 }}
-            >
-              <Card>
-                <CardHeader>
-                  <CardTitle>Envie uma Mensagem</CardTitle>
-                  <CardDescription>
-                    Preencha o formulário abaixo e retornaremos o contato em até 2 horas.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div>
-                      <Label className="mb-2" htmlFor="name">
-                        Nome
-                      </Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label className="mb-2" htmlFor="email">
-                        E-mail
-                      </Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-                    <div>
-                      <Label className="mb-2" htmlFor="message">
-                        Mensagem
-                      </Label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        rows={4}
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-                    <Button type="submit" className="w-full theme-primary hover:theme-primary-dark">
-                      Enviar <Send className="ml-2 w-4 h-4" />
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
       <section id="faq" className="py-20 px-4 bg-muted/50">
         <div className="container mx-auto">
           <div className="text-center mb-16">
@@ -654,7 +589,6 @@ export default function PortfolioSite() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-muted py-12 px-4">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -671,7 +605,6 @@ export default function PortfolioSite() {
               </p>
             </div>
 
-            {/* Serviços */}
             <div>
               <h4 className="font-semibold mb-4">Segmentos</h4>
               <ul className="space-y-2 text-muted-foreground">
@@ -685,7 +618,6 @@ export default function PortfolioSite() {
               </ul>
             </div>
 
-            {/* Portfólio */}
             <div>
               <h4 className="font-semibold mb-4">Serviços</h4>
               <ul className="space-y-2 text-muted-foreground">
@@ -699,7 +631,6 @@ export default function PortfolioSite() {
               </ul>
             </div>
 
-            {/* Contato */}
             <div>
               <h4 className="font-semibold mb-4">Contato</h4>
               <div className="space-y-3 text-muted-foreground">
@@ -733,7 +664,8 @@ export default function PortfolioSite() {
           <div className="border-t mt-8 pt-8 text-center text-muted-foreground">
             <p>
               &copy; {new Date().getFullYear()} T H L Silva - CNPJ 25.434.867/0001-86.{" "}
-              <br className="md:hidden lg:hidden" /> Todos os direitos reservados. <br />
+              <br className="md:hidden lg:hidden" />
+              Todos os direitos reservados. <br />
               <span className="text-xs">
                 Desenvolvido por{" "}
                 <a

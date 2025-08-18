@@ -293,7 +293,7 @@ export default function PortfolioSite() {
               return (
                 <Card
                   key={project.id}
-                  className="h-full flex flex-col justify-start p-3 bg-primary/5 border-border-primary/20"
+                  className="h-full flex flex-col justify-between p-3 bg-primary/5 border-border-primary/20"
                 >
                   <CardHeader className="flex flex-col items-center p-0 text-center">
                     <div className="flex items-center justify-center w-14 h-14 rounded-full bg-primary/20">

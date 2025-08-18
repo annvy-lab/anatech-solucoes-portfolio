@@ -5,8 +5,11 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
-  title: "AnaTech Soluções",
+  title: "Anatech Soluções",
   description: "Sistemas de Gestão para Seu Negócio!",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({

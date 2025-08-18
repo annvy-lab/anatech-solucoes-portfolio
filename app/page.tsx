@@ -282,7 +282,7 @@ export default function PortfolioSite() {
             </motion.p>
           </div>
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-3 gap-4 items-stretch"
+            className="grid grid-cols-2 md:grid-cols-3 gap-2 items-stretch"
             initial={{ opacity: 0, y: 100 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -293,9 +293,9 @@ export default function PortfolioSite() {
               return (
                 <Card
                   key={project.id}
-                  className="h-full flex flex-col justify-between p-4 bg-primary/10"
+                  className="h-full flex flex-col justify-start p-3 bg-primary/5 border-border-primary/20"
                 >
-                  <CardHeader className="flex flex-col items-center text-center space-y-3 pb-2">
+                  <CardHeader className="flex flex-col items-center p-0 text-center">
                     <div className="flex items-center justify-center w-14 h-14 rounded-full bg-primary/20">
                       {Icon ? (
                         <Icon className="w-7 h-7 text-primary-700" aria-hidden />
@@ -303,14 +303,12 @@ export default function PortfolioSite() {
                         <CircleHelp className="w-7 h-7 text-primary-700" aria-hidden />
                       )}
                     </div>
-                    <CardTitle className="text-lg font-semibold text-foreground">
+                    <CardTitle className="text-lg md:text-xl lg:text-xl font-semibold text-foreground text-justify-center">
                       {project.title}
                     </CardTitle>
                   </CardHeader>
-
-                  {/* Descrição fixa no rodapé */}
-                  <CardContent className="mt-auto p-0">
-                    <CardDescription className="text-sm text-muted-foreground text-center line-clamp-3">
+                  <CardContent className="mt-[-0.8rem] p-0">
+                    <CardDescription className="text-sm text-muted-foreground text-center">
                       {project.description}
                     </CardDescription>
                   </CardContent>

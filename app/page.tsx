@@ -303,7 +303,7 @@ export default function PortfolioSite() {
                         <CircleHelp className="w-7 h-7 text-primary-700" aria-hidden />
                       )}
                     </div>
-                    <CardTitle className="text-lg md:text-xl lg:text-xl font-semibold text-foreground text-justify-center">
+                    <CardTitle className="text-base md:text-xl lg:text-xl font-semibold text-foreground text-justify-center">
                       {project.title}
                     </CardTitle>
                   </CardHeader>

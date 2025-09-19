@@ -180,7 +180,7 @@ export default function PortfolioSite() {
                   }}
                 >
                   <Link
-                    href="https://wa.me/5599992013779?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20Anatech."
+                    href="https://wa.me/559999022779?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20Anatech"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -349,13 +349,19 @@ export default function PortfolioSite() {
                   <p className="text-muted-foreground">Anos de Experiência</p>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-primary mb-2">24/7</h3>
-                  <p className="text-muted-foreground">Suporte Disponível</p>
+                  <h3 className="text-2xl font-bold text-primary mb-2">12/6</h3>
+                  <p className="text-muted-foreground">
+                    Suporte Disponível
+                    <strong className="text-xs font-semibold">
+                      {" "}
+                      <br />+ atendimento emergencial aos domingos e feriados
+                    </strong>
+                  </p>
                 </div>
               </div>
               <div className="flex flex-wrap gap-3">
                 <Link
-                  href="https://wa.me/5599992013779?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20Anatech."
+                  href="https://wa.me/559999022779?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20Anatech"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -421,7 +427,7 @@ export default function PortfolioSite() {
                     </div>
                     <div>
                       <h4 className="font-semibold">Email</h4>
-                      <p className="text-muted-foreground">anatechsolucoes2@gmail.com</p>
+                      <p className="text-muted-foreground">anatechsolucoes@hotmail.com</p>
                     </div>
                   </div>
                   <Button
@@ -431,7 +437,7 @@ export default function PortfolioSite() {
                     aria-label="Copiar email"
                     onClick={() =>
                       handleCopy(
-                        "anatechsolucoes2@gmail.com",
+                        "anatechsolucoes@hotmail.com",
                         "Copiado para a área de transferência"
                       )
                     }
@@ -447,7 +453,7 @@ export default function PortfolioSite() {
                     </div>
                     <div>
                       <h4 className="font-semibold">Telefone</h4>
-                      <p className="text-muted-foreground">+55 (99) 99201-3779</p>
+                      <p className="text-muted-foreground">+55 (99) 9902-2779</p>
                     </div>
                   </div>
                   <Button
@@ -456,7 +462,7 @@ export default function PortfolioSite() {
                     className="shrink-0 hover:text-primary"
                     aria-label="Copiar telefone"
                     onClick={() =>
-                      handleCopy("+55 (99) 99201-3779", "Copiado para a área de transferência")
+                      handleCopy("+55 (99) 9902-2779", "Copiado para a área de transferência")
                     }
                   >
                     <Copy className="w-4 h-4" />
